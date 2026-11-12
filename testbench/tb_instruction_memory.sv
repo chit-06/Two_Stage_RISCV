@@ -1,63 +1,35 @@
 
 module tb_instruction_memory;
-
     logic [31:0] address;
     logic [31:0] instruction;
-
-    // Instantiate Instruction Memory
-    instruction_memory uut (
-        .address(address),
-        .instruction(instruction)
-    );
-
+    instruction_memory uut (.address(address), .instruction(instruction));
     initial begin
-
-        // Test 1: Address 0x00
         address = 32'h00000000;
         #10;
-        $display("Address: %h | Instruction: %h",
-                  address, instruction);
+        $display("Address: %h | Instruction: %h", address, instruction);
         if (instruction !== 32'h00500093)
-            $fatal(1, "TEST 1 FAILED");
-
-        // Test 2: Address 0x04
+            $fatal(1, "Test 1 failed");
         address = 32'h00000004;
         #10;
-        $display("Address: %h | Instruction: %h",
-                  address, instruction);
+        $display("Address: %h | Instruction: %h", address, instruction);
         if (instruction !== 32'h00A00113)
-            $fatal(1, "TEST 2 FAILED");
-
-        // Test 3: Address 0x08
+            $fatal(1, "Test 2 failed");
         address = 32'h00000008;
         #10;
-        $display("Address: %h | Instruction: %h",
-                  address, instruction);
+        $display("Address: %h | Instruction: %h", address, instruction);
         if (instruction !== 32'h002081B3)
-            $fatal(1, "TEST 3 FAILED");
-
-        // Test 4: Address 0x0C
+            $fatal(1, "Test 3 failed");
         address = 32'h0000000C;
         #10;
-        $display("Address: %h | Instruction: %h",
-                  address, instruction);
+        $display("Address: %h | Instruction: %h", address, instruction);
         if (instruction !== 32'h40110233)
-            $fatal(1, "TEST 4 FAILED");
-
-        // Test 5: Invalid address
+            $fatal(1, "Test 4 failed");
         address = 32'h00000010;
         #10;
-        $display("Address: %h | Instruction: %h",
-                  address, instruction);
+        $display("Address: %h | Instruction: %h", address, instruction);
         if (instruction !== 32'h00000013)
-            $fatal(1, "TEST 5 FAILED");
-
-        $display("--------------------------------");
-        $display("ALL INSTRUCTION MEMORY TESTS PASSED");
-        $display("--------------------------------");
-
+            $fatal(1, "Test 5 failed");
+        $display("All instruction memory tests passed");
         $finish;
-
     end
-
 endmodule
