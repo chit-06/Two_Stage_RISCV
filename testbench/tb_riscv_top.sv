@@ -18,7 +18,7 @@ module tb_riscv_top;
         repeat (2) @(posedge clk);
         @(negedge clk);
         reset = 0;
-        repeat (8) @(posedge clk);
+        repeat (12) @(posedge clk);
         #1;
         if (uut.register_file_inst.registers[1] !== 32'd5)
             $fatal(1, "ADDI x1 test failed");
@@ -36,6 +36,14 @@ module tb_riscv_top;
             $fatal(1, "SUB x4 test failed");
         else
             $display("SUB x4 test passed");
+        if (uut.data_mem.memory[0] !== 32'd15)
+            $fatal(1, "SW test failed");
+        else
+            $display("SW test passed");
+        if (uut.register_file_inst.registers[5] !== 32'd15)
+            $fatal(1, "LW test failed");
+        else
+            $display("LW test passed");
         $display("All RISC-V processor tests passed");
         $finish;
     end
