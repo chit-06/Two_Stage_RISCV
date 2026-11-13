@@ -5,15 +5,35 @@ module tb_riscv_top;
     logic reset;
     logic [31:0] debug_pc;
     logic [31:0] debug_instruction;
+    logic invalid_seen;
 
     riscv_top uut (.clk(clk), .reset(reset),
         .debug_pc(debug_pc),
         .debug_instruction(debug_instruction));
 
     always #5 clk = ~clk;
+    always @(posedge clk) begin
+    if (!reset && debug_instruction == 32'hFFFFFFFF) begin
+    invalid_seen = 1;
 
-    initial begin
+    $display("Instruction = %h, Opcode = %b, Illegal = %b",
+             debug_instruction, uut.opcode, uut.illegal);
+
+           if (uut.illegal !== 1'b1)
+            $fatal(1, "Invalid instruction detection failed");
+        else
+            $display("Invalid instruction detection passed");
+
+        if (uut.register_file_inst.registers[31] !== 32'b0)
+            $fatal(1, "Invalid instruction register protection failed");
+        else
+            $display("Invalid instruction register protection passed");
+    end
+end
+
+    initial begin         
         clk = 0;
+        invalid_seen = 0;
         reset = 1;
         repeat (26) @(posedge clk);
         @(negedge clk);
@@ -72,7 +92,9 @@ module tb_riscv_top;
             $fatal(1, "Third dependency test failed");
         else
             $display("Third dependency test passed");
-        $display("All RISC-V processor tests passed");
-        $finish;
+        if (invalid_seen !== 1'b1)
+            $fatal(1, "Invalid instruction was not detected");
+            $display("All RISC-V processor tests passed");
+            $finish;     
     end
 endmodule

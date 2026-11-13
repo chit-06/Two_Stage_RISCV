@@ -17,6 +17,7 @@ module instruction_memory (input logic [31:0] address, output logic [31:0] instr
             32'h00000030: instruction = 32'h00300513;
             32'h00000034: instruction = 32'h00450593;
             32'h00000038: instruction = 32'h00A58633;
+            32'h0000003C: instruction = 32'hFFFFFFFF;
             default: instruction = 32'h00000013;
         endcase
     end

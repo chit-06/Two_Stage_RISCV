@@ -1,0 +1,357 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Fri Nov 13 16:52:25 2026
+| Host         : LAPTOP-TNNT4CEK running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 5 -path_type full -file C:/VivadoProjects/Two_Stage_RISCV/Reports/critical_paths.rpt
+| Design       : riscv_top
+| Device       : 7vx485t-ffg1157
+| Speed File   : -1  PRODUCTION 1.12 2014-09-11
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -2.826ns  (required time - arrival time)
+  Source:                 pipeline_reg/instruction_out_reg[31]_rep__1/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            register_file_inst/registers_reg[12][7]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        12.956ns  (logic 1.560ns (12.041%)  route 11.396ns (87.959%))
+  Logic Levels:           11  (CARRY4=3 LUT2=1 LUT4=2 LUT6=4 MUXF8=1)
+  Clock Path Skew:        0.162ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.117ns = ( 15.117 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.217ns
+    Clock Pessimism Removal (CPR):    0.262ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.217     5.217    <hidden>
+    SLICE_X46Y100        FDRE                         0.000     5.217 r  pipeline_reg/instruction_out_reg[31]_rep__1/C
+    SLICE_X46Y100        FDRE (Prop_fdre_C_Q)         0.308     5.525 f  pipeline_reg/instruction_out_reg[31]_rep__1/Q
+                         net (fo=97, routed)          3.970     9.495    register_file_inst/memory_reg_0_255_28_28_i_5_0
+    SLICE_X45Y87         LUT4 (Prop_lut4_I3_O)        0.053     9.548 r  register_file_inst/memory_reg_0_255_2_2_i_8/O
+                         net (fo=1, routed)           0.194     9.741    register_file_inst/memory_reg_0_255_2_2_i_8_n_0
+    SLICE_X45Y87         LUT6 (Prop_lut6_I5_O)        0.053     9.794 r  register_file_inst/memory_reg_0_255_2_2_i_5/O
+                         net (fo=1, routed)           0.599    10.394    register_file_inst/memory_reg_0_255_2_2_i_5_n_0
+    SLICE_X44Y85         LUT6 (Prop_lut6_I3_O)        0.053    10.447 r  register_file_inst/memory_reg_0_255_2_2_i_2/O
+                         net (fo=5, routed)           0.440    10.887    pipeline_reg/result2_carry_i_3_1
+    SLICE_X44Y89         LUT6 (Prop_lut6_I0_O)        0.053    10.940 r  pipeline_reg/i__carry_i_26/O
+                         net (fo=4, routed)           0.710    11.650    pipeline_reg/i__carry_i_26_n_0
+    SLICE_X41Y89         LUT2 (Prop_lut2_I1_O)        0.053    11.703 r  pipeline_reg/i__carry_i_6/O
+                         net (fo=1, routed)           0.000    11.703    alu_unit/S[2]
+    SLICE_X41Y89         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.235    11.938 r  alu_unit/result0_inferred__0/i__carry/CO[3]
+                         net (fo=1, routed)           0.000    11.938    alu_unit/result0_inferred__0/i__carry_n_0
+    SLICE_X41Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.058    11.996 r  alu_unit/result0_inferred__0/i__carry__0/CO[3]
+                         net (fo=1, routed)           0.000    11.996    alu_unit/result0_inferred__0/i__carry__0_n_0
+    SLICE_X41Y91         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.213    12.209 r  alu_unit/result0_inferred__0/i__carry__1/O[1]
+                         net (fo=1, routed)           0.446    12.655    pipeline_reg/data1[9]
+    SLICE_X42Y91         LUT4 (Prop_lut4_I1_O)        0.152    12.807 r  pipeline_reg/memory_reg_0_255_0_0_i_3/O
+                         net (fo=162, routed)         2.732    15.538    data_mem/memory_reg_0_255_7_7/A7
+    SLICE_X38Y86         MUXF8 (Prop_muxf8_S_O)       0.173    15.711 r  data_mem/memory_reg_0_255_7_7/F8/O
+                         net (fo=1, routed)           0.681    16.392    pipeline_reg/read_data0[7]
+    SLICE_X41Y87         LUT6 (Prop_lut6_I4_O)        0.156    16.548 r  pipeline_reg/registers[1][7]_i_1/O
+                         net (fo=15, routed)          1.625    18.173    register_file_inst/D[7]
+    SLICE_X34Y88         FDRE                                         r  register_file_inst/registers_reg[12][7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.117    15.117    <hidden>
+                         clock pessimism              0.262    15.379    <hidden>
+                         clock uncertainty           -0.035    15.343    <hidden>
+    SLICE_X34Y88         FDRE (Setup_fdre_C_D)        0.004    15.347    register_file_inst/registers_reg[12][7]
+  -------------------------------------------------------------------
+                         required time                         15.347    <hidden>
+                         arrival time                         -18.173    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -2.826    <hidden>
+
+Slack (VIOLATED) :        -2.727ns  (required time - arrival time)
+  Source:                 pipeline_reg/instruction_out_reg[31]_rep__1/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            register_file_inst/registers_reg[1][7]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        12.846ns  (logic 1.560ns (12.144%)  route 11.286ns (87.856%))
+  Logic Levels:           11  (CARRY4=3 LUT2=1 LUT4=2 LUT6=4 MUXF8=1)
+  Clock Path Skew:        0.161ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.116ns = ( 15.116 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.217ns
+    Clock Pessimism Removal (CPR):    0.262ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.217     5.217    <hidden>
+    SLICE_X46Y100        FDRE                         0.000     5.217 r  pipeline_reg/instruction_out_reg[31]_rep__1/C
+    SLICE_X46Y100        FDRE (Prop_fdre_C_Q)         0.308     5.525 f  pipeline_reg/instruction_out_reg[31]_rep__1/Q
+                         net (fo=97, routed)          3.970     9.495    register_file_inst/memory_reg_0_255_28_28_i_5_0
+    SLICE_X45Y87         LUT4 (Prop_lut4_I3_O)        0.053     9.548 r  register_file_inst/memory_reg_0_255_2_2_i_8/O
+                         net (fo=1, routed)           0.194     9.741    register_file_inst/memory_reg_0_255_2_2_i_8_n_0
+    SLICE_X45Y87         LUT6 (Prop_lut6_I5_O)        0.053     9.794 r  register_file_inst/memory_reg_0_255_2_2_i_5/O
+                         net (fo=1, routed)           0.599    10.394    register_file_inst/memory_reg_0_255_2_2_i_5_n_0
+    SLICE_X44Y85         LUT6 (Prop_lut6_I3_O)        0.053    10.447 r  register_file_inst/memory_reg_0_255_2_2_i_2/O
+                         net (fo=5, routed)           0.440    10.887    pipeline_reg/result2_carry_i_3_1
+    SLICE_X44Y89         LUT6 (Prop_lut6_I0_O)        0.053    10.940 r  pipeline_reg/i__carry_i_26/O
+                         net (fo=4, routed)           0.710    11.650    pipeline_reg/i__carry_i_26_n_0
+    SLICE_X41Y89         LUT2 (Prop_lut2_I1_O)        0.053    11.703 r  pipeline_reg/i__carry_i_6/O
+                         net (fo=1, routed)           0.000    11.703    alu_unit/S[2]
+    SLICE_X41Y89         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.235    11.938 r  alu_unit/result0_inferred__0/i__carry/CO[3]
+                         net (fo=1, routed)           0.000    11.938    alu_unit/result0_inferred__0/i__carry_n_0
+    SLICE_X41Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.058    11.996 r  alu_unit/result0_inferred__0/i__carry__0/CO[3]
+                         net (fo=1, routed)           0.000    11.996    alu_unit/result0_inferred__0/i__carry__0_n_0
+    SLICE_X41Y91         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.213    12.209 r  alu_unit/result0_inferred__0/i__carry__1/O[1]
+                         net (fo=1, routed)           0.446    12.655    pipeline_reg/data1[9]
+    SLICE_X42Y91         LUT4 (Prop_lut4_I1_O)        0.152    12.807 r  pipeline_reg/memory_reg_0_255_0_0_i_3/O
+                         net (fo=162, routed)         2.732    15.538    data_mem/memory_reg_0_255_7_7/A7
+    SLICE_X38Y86         MUXF8 (Prop_muxf8_S_O)       0.173    15.711 r  data_mem/memory_reg_0_255_7_7/F8/O
+                         net (fo=1, routed)           0.681    16.392    pipeline_reg/read_data0[7]
+    SLICE_X41Y87         LUT6 (Prop_lut6_I4_O)        0.156    16.548 r  pipeline_reg/registers[1][7]_i_1/O
+                         net (fo=15, routed)          1.515    18.063    register_file_inst/D[7]
+    SLICE_X34Y87         FDRE                                         r  register_file_inst/registers_reg[1][7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.116    15.116    <hidden>
+                         clock pessimism              0.262    15.378    <hidden>
+                         clock uncertainty           -0.035    15.342    <hidden>
+    SLICE_X34Y87         FDRE (Setup_fdre_C_D)       -0.007    15.335    register_file_inst/registers_reg[1][7]
+  -------------------------------------------------------------------
+                         required time                         15.335    <hidden>
+                         arrival time                         -18.063    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -2.727    <hidden>
+
+Slack (VIOLATED) :        -2.716ns  (required time - arrival time)
+  Source:                 pipeline_reg/instruction_out_reg[31]_rep__1/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            register_file_inst/registers_reg[3][7]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        12.813ns  (logic 1.560ns (12.176%)  route 11.253ns (87.824%))
+  Logic Levels:           11  (CARRY4=3 LUT2=1 LUT4=2 LUT6=4 MUXF8=1)
+  Clock Path Skew:        0.162ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.117ns = ( 15.117 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.217ns
+    Clock Pessimism Removal (CPR):    0.262ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.217     5.217    <hidden>
+    SLICE_X46Y100        FDRE                         0.000     5.217 r  pipeline_reg/instruction_out_reg[31]_rep__1/C
+    SLICE_X46Y100        FDRE (Prop_fdre_C_Q)         0.308     5.525 f  pipeline_reg/instruction_out_reg[31]_rep__1/Q
+                         net (fo=97, routed)          3.970     9.495    register_file_inst/memory_reg_0_255_28_28_i_5_0
+    SLICE_X45Y87         LUT4 (Prop_lut4_I3_O)        0.053     9.548 r  register_file_inst/memory_reg_0_255_2_2_i_8/O
+                         net (fo=1, routed)           0.194     9.741    register_file_inst/memory_reg_0_255_2_2_i_8_n_0
+    SLICE_X45Y87         LUT6 (Prop_lut6_I5_O)        0.053     9.794 r  register_file_inst/memory_reg_0_255_2_2_i_5/O
+                         net (fo=1, routed)           0.599    10.394    register_file_inst/memory_reg_0_255_2_2_i_5_n_0
+    SLICE_X44Y85         LUT6 (Prop_lut6_I3_O)        0.053    10.447 r  register_file_inst/memory_reg_0_255_2_2_i_2/O
+                         net (fo=5, routed)           0.440    10.887    pipeline_reg/result2_carry_i_3_1
+    SLICE_X44Y89         LUT6 (Prop_lut6_I0_O)        0.053    10.940 r  pipeline_reg/i__carry_i_26/O
+                         net (fo=4, routed)           0.710    11.650    pipeline_reg/i__carry_i_26_n_0
+    SLICE_X41Y89         LUT2 (Prop_lut2_I1_O)        0.053    11.703 r  pipeline_reg/i__carry_i_6/O
+                         net (fo=1, routed)           0.000    11.703    alu_unit/S[2]
+    SLICE_X41Y89         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.235    11.938 r  alu_unit/result0_inferred__0/i__carry/CO[3]
+                         net (fo=1, routed)           0.000    11.938    alu_unit/result0_inferred__0/i__carry_n_0
+    SLICE_X41Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.058    11.996 r  alu_unit/result0_inferred__0/i__carry__0/CO[3]
+                         net (fo=1, routed)           0.000    11.996    alu_unit/result0_inferred__0/i__carry__0_n_0
+    SLICE_X41Y91         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.213    12.209 r  alu_unit/result0_inferred__0/i__carry__1/O[1]
+                         net (fo=1, routed)           0.446    12.655    pipeline_reg/data1[9]
+    SLICE_X42Y91         LUT4 (Prop_lut4_I1_O)        0.152    12.807 r  pipeline_reg/memory_reg_0_255_0_0_i_3/O
+                         net (fo=162, routed)         2.732    15.538    data_mem/memory_reg_0_255_7_7/A7
+    SLICE_X38Y86         MUXF8 (Prop_muxf8_S_O)       0.173    15.711 r  data_mem/memory_reg_0_255_7_7/F8/O
+                         net (fo=1, routed)           0.681    16.392    pipeline_reg/read_data0[7]
+    SLICE_X41Y87         LUT6 (Prop_lut6_I4_O)        0.156    16.548 r  pipeline_reg/registers[1][7]_i_1/O
+                         net (fo=15, routed)          1.481    18.029    register_file_inst/D[7]
+    SLICE_X35Y88         FDRE                                         r  register_file_inst/registers_reg[3][7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.117    15.117    <hidden>
+                         clock pessimism              0.262    15.379    <hidden>
+                         clock uncertainty           -0.035    15.343    <hidden>
+    SLICE_X35Y88         FDRE (Setup_fdre_C_D)       -0.030    15.313    register_file_inst/registers_reg[3][7]
+  -------------------------------------------------------------------
+                         required time                         15.313    <hidden>
+                         arrival time                         -18.029    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -2.716    <hidden>
+
+Slack (VIOLATED) :        -2.633ns  (required time - arrival time)
+  Source:                 pipeline_reg/instruction_out_reg[31]_rep__1/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            register_file_inst/registers_reg[7][7]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        12.729ns  (logic 1.560ns (12.255%)  route 11.169ns (87.745%))
+  Logic Levels:           11  (CARRY4=3 LUT2=1 LUT4=2 LUT6=4 MUXF8=1)
+  Clock Path Skew:        0.163ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.118ns = ( 15.118 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.217ns
+    Clock Pessimism Removal (CPR):    0.262ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.217     5.217    <hidden>
+    SLICE_X46Y100        FDRE                         0.000     5.217 r  pipeline_reg/instruction_out_reg[31]_rep__1/C
+    SLICE_X46Y100        FDRE (Prop_fdre_C_Q)         0.308     5.525 f  pipeline_reg/instruction_out_reg[31]_rep__1/Q
+                         net (fo=97, routed)          3.970     9.495    register_file_inst/memory_reg_0_255_28_28_i_5_0
+    SLICE_X45Y87         LUT4 (Prop_lut4_I3_O)        0.053     9.548 r  register_file_inst/memory_reg_0_255_2_2_i_8/O
+                         net (fo=1, routed)           0.194     9.741    register_file_inst/memory_reg_0_255_2_2_i_8_n_0
+    SLICE_X45Y87         LUT6 (Prop_lut6_I5_O)        0.053     9.794 r  register_file_inst/memory_reg_0_255_2_2_i_5/O
+                         net (fo=1, routed)           0.599    10.394    register_file_inst/memory_reg_0_255_2_2_i_5_n_0
+    SLICE_X44Y85         LUT6 (Prop_lut6_I3_O)        0.053    10.447 r  register_file_inst/memory_reg_0_255_2_2_i_2/O
+                         net (fo=5, routed)           0.440    10.887    pipeline_reg/result2_carry_i_3_1
+    SLICE_X44Y89         LUT6 (Prop_lut6_I0_O)        0.053    10.940 r  pipeline_reg/i__carry_i_26/O
+                         net (fo=4, routed)           0.710    11.650    pipeline_reg/i__carry_i_26_n_0
+    SLICE_X41Y89         LUT2 (Prop_lut2_I1_O)        0.053    11.703 r  pipeline_reg/i__carry_i_6/O
+                         net (fo=1, routed)           0.000    11.703    alu_unit/S[2]
+    SLICE_X41Y89         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.235    11.938 r  alu_unit/result0_inferred__0/i__carry/CO[3]
+                         net (fo=1, routed)           0.000    11.938    alu_unit/result0_inferred__0/i__carry_n_0
+    SLICE_X41Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.058    11.996 r  alu_unit/result0_inferred__0/i__carry__0/CO[3]
+                         net (fo=1, routed)           0.000    11.996    alu_unit/result0_inferred__0/i__carry__0_n_0
+    SLICE_X41Y91         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.213    12.209 r  alu_unit/result0_inferred__0/i__carry__1/O[1]
+                         net (fo=1, routed)           0.446    12.655    pipeline_reg/data1[9]
+    SLICE_X42Y91         LUT4 (Prop_lut4_I1_O)        0.152    12.807 r  pipeline_reg/memory_reg_0_255_0_0_i_3/O
+                         net (fo=162, routed)         2.732    15.538    data_mem/memory_reg_0_255_7_7/A7
+    SLICE_X38Y86         MUXF8 (Prop_muxf8_S_O)       0.173    15.711 r  data_mem/memory_reg_0_255_7_7/F8/O
+                         net (fo=1, routed)           0.681    16.392    pipeline_reg/read_data0[7]
+    SLICE_X41Y87         LUT6 (Prop_lut6_I4_O)        0.156    16.548 r  pipeline_reg/registers[1][7]_i_1/O
+                         net (fo=15, routed)          1.398    17.946    register_file_inst/D[7]
+    SLICE_X33Y88         FDRE                                         r  register_file_inst/registers_reg[7][7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.118    15.118    <hidden>
+                         clock pessimism              0.262    15.380    <hidden>
+                         clock uncertainty           -0.035    15.344    <hidden>
+    SLICE_X33Y88         FDRE (Setup_fdre_C_D)       -0.032    15.312    register_file_inst/registers_reg[7][7]
+  -------------------------------------------------------------------
+                         required time                         15.312    <hidden>
+                         arrival time                         -17.946    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -2.633    <hidden>
+
+Slack (VIOLATED) :        -2.608ns  (required time - arrival time)
+  Source:                 pipeline_reg/instruction_out_reg[31]_rep__1/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            register_file_inst/registers_reg[2][7]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        12.729ns  (logic 1.560ns (12.255%)  route 11.169ns (87.745%))
+  Logic Levels:           11  (CARRY4=3 LUT2=1 LUT4=2 LUT6=4 MUXF8=1)
+  Clock Path Skew:        0.163ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.118ns = ( 15.118 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.217ns
+    Clock Pessimism Removal (CPR):    0.262ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.217     5.217    <hidden>
+    SLICE_X46Y100        FDRE                         0.000     5.217 r  pipeline_reg/instruction_out_reg[31]_rep__1/C
+    SLICE_X46Y100        FDRE (Prop_fdre_C_Q)         0.308     5.525 f  pipeline_reg/instruction_out_reg[31]_rep__1/Q
+                         net (fo=97, routed)          3.970     9.495    register_file_inst/memory_reg_0_255_28_28_i_5_0
+    SLICE_X45Y87         LUT4 (Prop_lut4_I3_O)        0.053     9.548 r  register_file_inst/memory_reg_0_255_2_2_i_8/O
+                         net (fo=1, routed)           0.194     9.741    register_file_inst/memory_reg_0_255_2_2_i_8_n_0
+    SLICE_X45Y87         LUT6 (Prop_lut6_I5_O)        0.053     9.794 r  register_file_inst/memory_reg_0_255_2_2_i_5/O
+                         net (fo=1, routed)           0.599    10.394    register_file_inst/memory_reg_0_255_2_2_i_5_n_0
+    SLICE_X44Y85         LUT6 (Prop_lut6_I3_O)        0.053    10.447 r  register_file_inst/memory_reg_0_255_2_2_i_2/O
+                         net (fo=5, routed)           0.440    10.887    pipeline_reg/result2_carry_i_3_1
+    SLICE_X44Y89         LUT6 (Prop_lut6_I0_O)        0.053    10.940 r  pipeline_reg/i__carry_i_26/O
+                         net (fo=4, routed)           0.710    11.650    pipeline_reg/i__carry_i_26_n_0
+    SLICE_X41Y89         LUT2 (Prop_lut2_I1_O)        0.053    11.703 r  pipeline_reg/i__carry_i_6/O
+                         net (fo=1, routed)           0.000    11.703    alu_unit/S[2]
+    SLICE_X41Y89         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.235    11.938 r  alu_unit/result0_inferred__0/i__carry/CO[3]
+                         net (fo=1, routed)           0.000    11.938    alu_unit/result0_inferred__0/i__carry_n_0
+    SLICE_X41Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.058    11.996 r  alu_unit/result0_inferred__0/i__carry__0/CO[3]
+                         net (fo=1, routed)           0.000    11.996    alu_unit/result0_inferred__0/i__carry__0_n_0
+    SLICE_X41Y91         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.213    12.209 r  alu_unit/result0_inferred__0/i__carry__1/O[1]
+                         net (fo=1, routed)           0.446    12.655    pipeline_reg/data1[9]
+    SLICE_X42Y91         LUT4 (Prop_lut4_I1_O)        0.152    12.807 r  pipeline_reg/memory_reg_0_255_0_0_i_3/O
+                         net (fo=162, routed)         2.732    15.538    data_mem/memory_reg_0_255_7_7/A7
+    SLICE_X38Y86         MUXF8 (Prop_muxf8_S_O)       0.173    15.711 r  data_mem/memory_reg_0_255_7_7/F8/O
+                         net (fo=1, routed)           0.681    16.392    pipeline_reg/read_data0[7]
+    SLICE_X41Y87         LUT6 (Prop_lut6_I4_O)        0.156    16.548 r  pipeline_reg/registers[1][7]_i_1/O
+                         net (fo=15, routed)          1.398    17.946    register_file_inst/D[7]
+    SLICE_X32Y88         FDRE                                         r  register_file_inst/registers_reg[2][7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  <hidden>
+                         propagated clock network latency
+                                                      5.118    15.118    <hidden>
+                         clock pessimism              0.262    15.380    <hidden>
+                         clock uncertainty           -0.035    15.344    <hidden>
+    SLICE_X32Y88         FDRE (Setup_fdre_C_D)       -0.007    15.337    register_file_inst/registers_reg[2][7]
+  -------------------------------------------------------------------
+                         required time                         15.337    <hidden>
+                         arrival time                         -17.946    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -2.608    <hidden>
+
+
+
+
