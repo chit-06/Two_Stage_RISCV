@@ -15,10 +15,10 @@ module tb_riscv_top;
     initial begin
         clk = 0;
         reset = 1;
-        repeat (2) @(posedge clk);
+        repeat (26) @(posedge clk);
         @(negedge clk);
         reset = 0;
-        repeat (20) @(posedge clk);
+        repeat (26) @(posedge clk);
         #1;
         if (uut.register_file_inst.registers[1] !== 32'd5)
             $fatal(1, "ADDI x1 test failed");
@@ -60,6 +60,18 @@ module tb_riscv_top;
             $fatal(1, "BNE target test failed");
         else
             $display("BNE target test passed");
+        if (uut.register_file_inst.registers[10] !== 32'd3)
+            $fatal(1, "First dependency test failed");
+        else
+            $display("First dependency test passed");
+        if (uut.register_file_inst.registers[11] !== 32'd7)
+            $fatal(1, "Second dependency test failed");
+        else
+            $display("Second dependency test passed");
+        if (uut.register_file_inst.registers[12] !== 32'd10)
+            $fatal(1, "Third dependency test failed");
+        else
+            $display("Third dependency test passed");
         $display("All RISC-V processor tests passed");
         $finish;
     end
