@@ -18,7 +18,7 @@ module tb_riscv_top;
         repeat (2) @(posedge clk);
         @(negedge clk);
         reset = 0;
-        repeat (12) @(posedge clk);
+        repeat (20) @(posedge clk);
         #1;
         if (uut.register_file_inst.registers[1] !== 32'd5)
             $fatal(1, "ADDI x1 test failed");
@@ -44,6 +44,22 @@ module tb_riscv_top;
             $fatal(1, "LW test failed");
         else
             $display("LW test passed");
+        if (uut.register_file_inst.registers[6] !== 32'd0)
+            $fatal(1, "BEQ flush test failed");
+        else
+            $display("BEQ flush test passed");
+        if (uut.register_file_inst.registers[7] !== 32'd7)
+            $fatal(1, "BEQ target test failed");
+        else
+            $display("BEQ target test passed");
+        if (uut.register_file_inst.registers[9] !== 32'd0)
+            $fatal(1, "BNE flush test failed");
+        else
+            $display("BNE flush test passed");
+        if (uut.register_file_inst.registers[8] !== 32'd8)
+            $fatal(1, "BNE target test failed");
+        else
+            $display("BNE target test passed");
         $display("All RISC-V processor tests passed");
         $finish;
     end
