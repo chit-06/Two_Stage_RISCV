@@ -1,4 +1,4 @@
-#Two-Stage Pipelined RISC-V Processor
+# Two-Stage Pipelined RISC-V Processor
 
 **1. Project Overview**
 
