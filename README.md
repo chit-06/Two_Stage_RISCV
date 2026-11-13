@@ -10,12 +10,12 @@ The processor implements a selected subset of the RV32I instruction set and demo
 
 The processor consists of two pipeline stages:
 
-Stage 1 – Instruction Fetch (IF)**
+**Stage 1 – Instruction Fetch (IF)**
 - Program Counter (PC)
 - Instruction Memory
 - PC + 4 calculation
 
-Stage 2 – Decode, Execute, Memory and Writeback**
+**Stage 2 – Decode, Execute, Memory and Writeback**
 - Instruction Decoder
 - Control Unit
 - Register File
